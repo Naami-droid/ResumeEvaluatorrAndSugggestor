@@ -7,8 +7,8 @@ A professional, multi-agentic AI Resume Screener that evaluates resumes against 
 - **Resume Upload & Parsing**: Automatically extracts text from PDF and DOCX files.
 - **Smart Evaluation**: Scores your resume (0-100) based on relevance to the provided job description.
 - **Keyword Analysis**: Identifies matched and missing keywords crucial for Applicant Tracking Systems (ATS).
-- **Rewrite Suggestions**: Provides targeted, actionable feedback to improve specific resume bullet points.
-- **Multi-Agentic AI Architecture**: Separation of concerns using dedicated AI agent roles for parsing, evaluation, and feedback generation.
+- **Rewrite Suggestions**: Provides actionable feedback to improve specific resume bullet points.
+- **Multi-Agentic AI Architecture**: Separation of concerns using dedicated AI agent roles for parsing, evaluation, and feedback.
 
 ---
 
@@ -18,25 +18,25 @@ The core AI engine uses a multi-agent workflow to ensure high-quality, structure
 
 ```mermaid
 graph TD
-    User([User]) --> |Uploads Resume (PDF/DOCX) & Job Description| API(FastAPI Backend)
+    User([User]) -->|"Uploads Resume and Job Description"| API["FastAPI Backend"]
     
     subgraph AI Multi-Agent System
-        Extractor[Text Extractor Agent]
-        Evaluator[Evaluation Agent]
-        Feedback[Feedback Agent]
-        Validator[JSON Validator Agent]
+        Extractor["Text Extractor Agent"]
+        Evaluator["Evaluation Agent"]
+        Feedback["Feedback Agent"]
+        Validator["JSON Validator Agent"]
     end
     
     API --> Extractor
-    Extractor --> |Extracts Plain Text| Evaluator
-    Evaluator --> |Finds Keywords & Calculates Score| Feedback
-    Feedback --> |Generates Rewrite Suggestions| Validator
-    Validator --> |Validates JSON Schema with Pydantic| API
+    Extractor -->|"Extracts Plain Text"| Evaluator
+    Evaluator -->|"Finds Keywords and Calculates Score"| Feedback
+    Feedback -->|"Generates Rewrite Suggestions"| Validator
+    Validator -->|"Validates JSON Schema with Pydantic"| API
     
-    Validator -.-> |Fails Validation| Evaluator
+    Validator -.->|"Fails Validation"| Evaluator
     
-    API --> |Returns JSON Payload| UI(Next.js Frontend)
-    UI --> |Displays Dashboard| User
+    API -->|"Returns JSON Payload"| UI["Next.js Frontend"]
+    UI -->|"Displays Dashboard"| User
     
     classDef agent fill:#f9f,stroke:#333,stroke-width:2px;
     class Extractor,Evaluator,Feedback,Validator agent;
