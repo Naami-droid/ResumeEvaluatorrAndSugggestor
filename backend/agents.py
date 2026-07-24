@@ -14,7 +14,7 @@ client = OpenAI(
     base_url="https://api.x.ai/v1",
 )
 # For xAI, grok-beta is typically the model name. If you use OpenAI instead, change this to gpt-4o-mini
-MODEL_NAME = "grok-beta"
+MODEL_NAME = "grok-4.5"
 
 class EvaluationResult(BaseModel):
     score: int = Field(description="Score out of 100 based on the match between resume and job description.")
